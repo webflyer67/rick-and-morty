@@ -1,6 +1,43 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
+
+import { useQuery } from "@vue/apollo-composable";
+import gql from 'graphql-tag';
+import { watch } from 'vue';
+// import { ref } from 'vue';
+
+// const name = "morty"
+// characters(filter: {name: "${name}"}) {
+const query = gql`
+{
+  characters {
+    info {
+      count
+    }
+    results {
+      id
+      name
+      gender
+    }
+  }
+}
+`
+
+// let uuu =    ref('')
+const { result, loading } = useQuery(query)
+// console.log(999, result, loading)
+
+watch(loading, (newValue) => {
+  console.log(111, newValue, result.value)
+  // let query = reassignQuery(newValue.query)
+  // if (!isEqual(newValue.query, query)) {
+  //   console.log(222, 'router.replace', { query })
+  //   // History.replaceState()
+  //   // router.push({ path: '/', query })
+  // }
+})
+
 </script>
 
 <template>
@@ -18,9 +55,27 @@ import HelloWorld from '@/components/HelloWorld.vue'
   </header>
 
   <RouterView />
+  <template v-if="!loading">
+    <div class="container" v-for="character in result.characters.results" :key="character.id">
+      <div>{{ character.id }}</div>
+      <div>{{ character.name }}</div>
+      <div>{{ character.gender }}</div>
+
+    </div>
+  </template>
+
+  <div>
+    --- {{ loading }} ---
+    *** {{ result }} ***
+  </div>
 </template>
 
 <style scoped>
+.container {
+  display: flex;
+}
+
+
 header {
   line-height: 1.5;
   max-height: 100vh;
