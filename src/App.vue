@@ -1,27 +1,27 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
+import { RouterView } from 'vue-router'
+// import HelloWorld from '@/components/HelloWorld.vue'
 
-import { useQuery } from "@vue/apollo-composable";
-import gql from 'graphql-tag';
-import { watch } from 'vue';
+import { useQuery } from '@vue/apollo-composable'
+import gql from 'graphql-tag'
+import { watch } from 'vue'
 // import { ref } from 'vue';
 
 // const name = "morty"
 // characters(filter: {name: "${name}"}) {
 const query = gql`
-{
-  characters {
-    info {
-      count
-    }
-    results {
-      id
-      name
-      gender
+  {
+    characters {
+      info {
+        count
+      }
+      results {
+        id
+        name
+        gender
+      }
     }
   }
-}
 `
 
 // let uuu =    ref('')
@@ -37,11 +37,10 @@ watch(loading, (newValue) => {
   //   // router.push({ path: '/', query })
   // }
 })
-
 </script>
 
 <template>
-  <header>
+  <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
@@ -52,29 +51,28 @@ watch(loading, (newValue) => {
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
-  </header>
+  </header> -->
 
   <RouterView />
-  <template v-if="!loading">
+  <!-- <template v-if="!loading">
     <div class="container" v-for="character in result.characters.results" :key="character.id">
       <div>{{ character.id }}</div>
       <div>{{ character.name }}</div>
       <div>{{ character.gender }}</div>
 
     </div>
-  </template>
+  </template> 
 
   <div>
     --- {{ loading }} ---
     *** {{ result }} ***
-  </div>
+  </div>-->
 </template>
 
 <style scoped>
 .container {
   display: flex;
 }
-
 
 header {
   line-height: 1.5;
