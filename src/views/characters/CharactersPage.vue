@@ -5,9 +5,6 @@ import type { IResult } from '@/types/IResult'
 import type { ICharacter } from '@/types/dataset/ICharacter'
 import { useCharacters } from '@/composables/graphql/useCharacters'
 
-
-
-
 const router = useRouter()
 const route = useRoute()
 
@@ -20,7 +17,6 @@ let page: ComputedRef<number> = computed(() => {
 })
 
 const { info, results, loading, error }: IResult<ICharacter> = useCharacters(page)
-
 </script>
 
 <template>
@@ -30,7 +26,7 @@ const { info, results, loading, error }: IResult<ICharacter> = useCharacters(pag
       <div>{{ character.name }}</div>
       <div>{{ character.gender }}</div>
     </div>
-    <button @click="router.push({ params: { page: page + 1 } })">next</button>
+    <v-btn @click="router.push({ params: { page: page + 1 } })"> next page </v-btn>
   </div>
 
   <div>

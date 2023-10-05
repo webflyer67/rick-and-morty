@@ -11,6 +11,9 @@ dependencies:
   '@vue/apollo-composable':
     specifier: 4.0.0-beta.11
     version: 4.0.0-beta.11(@apollo/client@3.8.4)(graphql@16.8.1)(typescript@5.2.2)(vue@3.3.4)
+  add:
+    specifier: ^2.0.6
+    version: 2.0.6
   graphql:
     specifier: ^16.8.1
     version: 16.8.1
@@ -23,6 +26,9 @@ dependencies:
   vue-router:
     specifier: ^4.2.4
     version: 4.2.4(vue@3.3.4)
+  vuetify:
+    specifier: ^3.3.20
+    version: 3.3.20(typescript@5.2.2)(vue@3.3.4)
 
 devDependencies:
   '@rushstack/eslint-patch':
@@ -834,6 +840,10 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
+
+  /add@2.0.6:
+    resolution: {integrity: sha512-j5QzrmsokwWWp6kUcJQySpbG+xfOBqqKnup3OIk1pz+kB/80SLorZ9V8zHFLO92Lcd+hbvq8bT+zOGoPkmBV0Q==}
+    dev: false
 
   /ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
@@ -2369,6 +2379,29 @@ packages:
       '@vue/runtime-dom': 3.3.4
       '@vue/server-renderer': 3.3.4(vue@3.3.4)
       '@vue/shared': 3.3.4
+
+  /vuetify@3.3.20(typescript@5.2.2)(vue@3.3.4):
+    resolution: {integrity: sha512-7z3rv1j94WXO1y9CYQXygtCuct0bJNPao0T5no95c++atvPf5+WfgvnYK+XrMyjq4Y0xe6z5mhJfv9taeVelpQ==}
+    engines: {node: ^12.20 || >=14.13}
+    peerDependencies:
+      typescript: '>=4.7'
+      vite-plugin-vuetify: ^1.0.0-alpha.12
+      vue: ^3.2.0
+      vue-i18n: ^9.0.0
+      webpack-plugin-vuetify: ^2.0.0-alpha.11
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+      vite-plugin-vuetify:
+        optional: true
+      vue-i18n:
+        optional: true
+      webpack-plugin-vuetify:
+        optional: true
+    dependencies:
+      typescript: 5.2.2
+      vue: 3.3.4
+    dev: false
 
   /which@2.0.2:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}
