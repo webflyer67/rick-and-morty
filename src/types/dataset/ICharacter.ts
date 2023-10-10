@@ -1,7 +1,11 @@
-import type { ID } from '@/types/types'
+import type { TID, TStatus, TGender } from '@/types/types'
 
 export interface ICharacter {
-  id: ID
+  id: TID
   name: string
-  gender: string
+  gender: TGender
+  status: TStatus
+  species: string
+  type: string
+  image: string
 }

@@ -4,7 +4,7 @@ import type { IResultInfo } from '@/types/IResultInfo'
 
 export interface IResult<T> {
   info: ComputedRef<IResultInfo>
-  results: ComputedRef<Array<T>>
+  items: ComputedRef<Array<T>>
   loading: Ref<Boolean>
   error: Ref<ApolloError | null>
 }

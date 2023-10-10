@@ -12,8 +12,27 @@ export const CHARACTER_RESULT: DocumentNode = gql`
     id
     name
     gender
+    status
+    species
+    type
+    image
   }
 `
+// origin {
+//   id
+//   name
+//   type
+//   dimension
+// }
+// location {
+//   id
+//   name
+// }
+
+// episode {
+//   id
+//   name
+// }
 
 export const CHARACTER_QUERY: DocumentNode = gql`
   query Character($page: Int) {

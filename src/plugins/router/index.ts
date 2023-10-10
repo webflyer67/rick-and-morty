@@ -14,6 +14,7 @@ const router = createRouter({
       name: 'about',
       component: () => import('@/views/AboutView.vue')
     },
+
     {
       path: '/characters',
       name: 'charactersFirst',
@@ -23,6 +24,28 @@ const router = createRouter({
       path: '/characters/:page',
       name: 'characters',
       component: () => import('@/views/characters/CharactersPage.vue')
+    },
+
+    {
+      path: '/locations',
+      name: 'locationsFirst',
+      component: () => import('@/views/locations/LocationsPage.vue')
+    },
+    {
+      path: '/locations/:page',
+      name: 'locations',
+      component: () => import('@/views/locations/LocationsPage.vue')
+    },
+
+    {
+      path: '/episodes',
+      name: 'episodesFirst',
+      component: () => import('@/views/episodes/EpisodesPage.vue')
+    },
+    {
+      path: '/episodes/:page',
+      name: 'episodes',
+      component: () => import('@/views/episodes/EpisodesPage.vue')
     }
   ]
 })

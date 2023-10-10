@@ -1,10 +1,10 @@
-import '@/assets/main.css'
+import '@/assets/main.scss'
 
 import { createApp, provide, h } from 'vue'
 import App from '@/App.vue'
-import { router } from '@/router'
-import { vuetify } from '@/vuetify'
-import { DefaultApolloClient, apolloClient } from '@/apollo'
+import { router } from '@/plugins/router'
+import { vuetify } from '@/plugins/vuetify'
+import { DefaultApolloClient, apolloClient } from '@/plugins/apollo'
 
 const app = createApp({
   setup() {
