@@ -1,5 +1,5 @@
 import type { ICharacter } from '@/types/dataset/ICharacter'
-// import { errLog } from '@/src/asserts/errLog'
+// import { errLog } from '@/src/assertions/errLog'
 import { errLog } from './errLog'
 import { Status, Gender } from '@/types/types'
 
@@ -48,6 +48,10 @@ function assertCharacter(character: unknown): asserts character is ICharacter {
 
     if (!('type' in character) || !['string'].includes(typeof character.type)) {
       errLog(`Поле 'type'('string') должно быть`, character)
+    }
+
+    if (!('image' in character) || !['string'].includes(typeof character.image)) {
+      errLog(`Поле 'image'('string') должно быть`, character)
     }
   } else {
     console.error('Character не объект', 'character:', character)

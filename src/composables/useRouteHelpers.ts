@@ -13,5 +13,9 @@ export function useRouteHelpers() {
     return page
   })
 
-  return { realPage }
+  const id: ComputedRef<number> = computed(() => {
+    return Number(route?.params?.id) ?? 0
+  })
+
+  return { realPage, id }
 }

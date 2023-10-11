@@ -1,15 +1,15 @@
 // mouse.js
 import { useQuery } from '@vue/apollo-composable'
 import { computed, type ComputedRef } from 'vue'
-import { CHARACTER_QUERY } from '@/graphql/CHARACTER_QUERY'
+import { CHARACTERS_QUERY } from '@/graphql/QUERY'
 
-import type { IResult } from '@/types/IResult'
+import type { IResults } from '@/types/IResults'
 import type { ICharacter } from '@/types/dataset/ICharacter'
 import type { IResultInfo } from '@/types/IResultInfo'
-import { assertCharacter } from '@/asserts/assertCharacter'
+import { assertCharacter } from '@/assertions/assertCharacter'
 
-export function useCharacters(page: ComputedRef<number>): IResult<ICharacter> {
-  const { result, loading, error } = useQuery(CHARACTER_QUERY, () => ({ page: page.value }))
+export function useCharacters(page: ComputedRef<number>): IResults<ICharacter> {
+  const { result, loading, error } = useQuery(CHARACTERS_QUERY, () => ({ page: page.value }))
 
   const info: ComputedRef<IResultInfo> = computed(() => {
     return result.value?.characters?.info ?? { count: 0, pages: 0 }
