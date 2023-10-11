@@ -34,23 +34,33 @@ const router = createRouter({
     {
       path: '/locations',
       name: 'locationsFirst',
-      component: () => import('@/views/locations/LocationsPage.vue')
+      component: () => import('@/views/LocationsView.vue')
     },
     {
       path: '/locations/:page',
       name: 'locations',
-      component: () => import('@/views/locations/LocationsPage.vue')
+      component: () => import('@/views/LocationsView.vue')
+    },
+    {
+      path: '/location/:id',
+      name: 'location',
+      component: () => import('@/views/LocationView.vue')
     },
 
     {
       path: '/episodes',
       name: 'episodesFirst',
-      component: () => import('@/views/episodes/EpisodesPage.vue')
+      component: () => import('@/views/EpisodesView.vue')
     },
     {
       path: '/episodes/:page',
       name: 'episodes',
-      component: () => import('@/views/episodes/EpisodesPage.vue')
+      component: () => import('@/views/EpisodesView.vue')
+    },
+    {
+      path: '/episode/:id',
+      name: 'episode',
+      component: () => import('@/views/EpisodeView.vue')
     }
   ]
 })

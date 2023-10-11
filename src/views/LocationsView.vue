@@ -2,8 +2,8 @@
 import { useRouter } from 'vue-router'
 // import { computed, type ComputedRef } from 'vue'
 import type { IResults } from '@/types/IResults'
-import type { ICharacter } from '@/types/dataset/ICharacter'
-import { useCharacters } from '@/composables/graphql/useCharacters'
+import type { ILocation } from '@/types/dataset/ILocation'
+import { useLocations } from '@/composables/graphql/useLocations'
 import { useRouteHelpers } from '@/composables/useRouteHelpers'
 import type { TID } from '@/types/types'
 
@@ -11,18 +11,18 @@ const router = useRouter()
 const { realPage } = useRouteHelpers()
 
 function moreClick(id: TID) {
-  router.push({ name: 'character', params: { id } })
+  router.push({ name: 'location', params: { id } })
 }
 
 function pageClick(page: number) {
   if (page == 1) {
-    router.push({ name: 'charactersFirst' })
+    router.push({ name: 'locationsFirst' })
   } else {
-    router.push({ name: 'characters', params: { page } })
+    router.push({ name: 'locations', params: { page } })
   }
 }
 
-const { info, items, loading }: IResults<ICharacter> = useCharacters(realPage)
+const { info, items, loading }: IResults<ILocation> = useLocations(realPage)
 </script>
 
 <template>
@@ -44,16 +44,9 @@ const { info, items, loading }: IResults<ICharacter> = useCharacters(realPage)
         class="v-col-sm-6 v-col-md-4 v-col-lg-3 v-col-xl-2"
       >
         <v-card class="mx-auto elevation-10" max-width="100%">
-          <v-img class="align-end text-white" :src="item.image" cover>
-            <v-card-title> #{{ item.id }}: {{ item.name }}</v-card-title>
-          </v-img>
-
-          <v-card-subtitle class="pt-4">
-            Species: {{ item.species }}
-            <span v-if="item.type">({{ item.type }})</span>
-          </v-card-subtitle>
-          <v-card-subtitle class="pt-4"> Gender: {{ item.gender }} </v-card-subtitle>
-          <v-card-subtitle class="pt-4"> Status: {{ item.status }} </v-card-subtitle>
+          <v-card-title> #{{ item.id }}: {{ item.name }}</v-card-title>
+          <v-card-subtitle class="pt-4">Dimension: {{ item.dimension }}</v-card-subtitle>
+          <v-card-subtitle class="pt-4">Type: {{ item.type }}</v-card-subtitle>
           <v-card-actions class="justify-end">
             <v-btn @click="moreClick(item.id)" color="primary"> More... </v-btn>
           </v-card-actions>

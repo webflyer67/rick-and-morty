@@ -2,15 +2,15 @@
 // import { useRouter } from 'vue-router'
 // import { computed, type ComputedRef } from 'vue'
 // import type { IResult } from '@/types/IResult'
-// import type { ICharacter } from '@/types/dataset/ICharacter'
-import { useCharacter } from '@/composables/graphql/useCharacter'
+// import type { IEpisode } from '@/types/dataset/IEpisode'
+import { useEpisode } from '@/composables/graphql/useEpisode'
 import { useRouteHelpers } from '@/composables/useRouteHelpers'
 
 // const router = useRouter()
 const { id } = useRouteHelpers()
 
-//: IResult<ICharacter>
-const { item, loading } = useCharacter(id)
+//: IResult<IEpisode>
+const { item, loading } = useEpisode(id)
 </script>
 
 <template>
@@ -19,19 +19,9 @@ const { item, loading } = useCharacter(id)
       <v-card class="mx-auto elevation-10" width="100%">
         <v-row>
           <v-col>
-            <v-img class="elevation-3 align-end text-white" width="400px" :src="item.image" cover>
-              <v-card-title> #{{ item.id }}: {{ item.name }}</v-card-title>
-            </v-img>
-          </v-col>
-          <v-col>
-            <v-card-subtitle class="pt-4">
-              Species: {{ item.species }}
-              <span v-if="item.type">({{ item.type }})</span>
-            </v-card-subtitle>
-            <v-card-subtitle class="pt-4"> Gender: {{ item.gender }} </v-card-subtitle>
-            <v-card-subtitle class="pt-4"> Status: {{ item.status }} </v-card-subtitle>
-            <pre>{{ item }}</pre>
-
+            <v-card-title> #{{ item.id }}: {{ item.name }}</v-card-title>
+            <v-card-subtitle class="pt-4">Episode: {{ item.episode }}</v-card-subtitle>
+            <v-card-subtitle class="pt-4">Air Date: {{ item.airDate }}</v-card-subtitle>
             <!-- <v-card-actions class="justify-end">
           <v-btn color="primary"> More... </v-btn>
         </v-card-actions> -->

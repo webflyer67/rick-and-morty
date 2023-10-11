@@ -1,6 +1,6 @@
 import type { ICharacter } from '@/types/dataset/ICharacter'
 // import { errLog } from '@/src/assertions/errLog'
-import { errLog } from './errLog'
+import { errLog } from '@/assertions/errLog'
 import { Status, Gender } from '@/types/types'
 
 function assertCharacter(character: unknown): asserts character is ICharacter {

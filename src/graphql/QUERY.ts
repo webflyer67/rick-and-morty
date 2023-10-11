@@ -18,28 +18,55 @@ export const CHARACTER = gql`
     image
   }
 `
+export const LOCATION = gql`
+  fragment location on Location {
+    id
+    name
+    type
+    dimension
+  }
+`
+export const EPISODE = gql`
+  fragment episode on Episode {
+    id
+    name
+    airDate: air_date
+    episode
+  }
+`
 
-export const CHARACTER_REF = gql`
-  fragment characterRef on Character {
+export const CHARACTER_EXTENDEDS = gql`
+  fragment characterExtended on Character {
     location {
-      id
-      name
-      type
-      dimension
+      ...location
     }
     origin {
-      id
-      name
-      type
-      dimension
+      ...location
     }
-    episode {
-      id
-      name
-      air_date
-      episode
+    episodes: episode {
+      ...episode
     }
   }
+  ${LOCATION}
+  ${EPISODE}
+`
+
+export const LOCATION_EXTENDEDS = gql`
+  fragment locationExtended on Location {
+    residents {
+      ...character
+    }
+  }
+  ${CHARACTER}
+`
+
+export const EPISODE_EXTENDEDS = gql`
+  fragment episodeExtended on Episode {
+    characters {
+      ...character
+    }
+  }
+  ${CHARACTER}
 `
 
 export const CHARACTERS_QUERY = gql`
@@ -61,9 +88,61 @@ export const CHARACTER_QUERY = gql`
   query Character($id: ID!) {
     character(id: $id) {
       ...character
-      ...characterRef
+      ...characterExtended
     }
   }
   ${CHARACTER}
-  ${CHARACTER_REF}
+  ${CHARACTER_EXTENDEDS}
+`
+
+export const LOCATIONS_QUERY = gql`
+  query Locations($page: Int) {
+    locations(page: $page) {
+      info {
+        ...info
+      }
+
+      results {
+        ...location
+      }
+    }
+  }
+  ${INFO}
+  ${LOCATION}
+`
+export const LOCATION_QUERY = gql`
+  query Location($id: ID!) {
+    location(id: $id) {
+      ...location
+      ...locationExtended
+    }
+  }
+  ${LOCATION}
+  ${LOCATION_EXTENDEDS}
+`
+
+export const EPISODES_QUERY = gql`
+  query Episode($page: Int) {
+    episodes(page: $page) {
+      info {
+        ...info
+      }
+
+      results {
+        ...episode
+      }
+    }
+  }
+  ${INFO}
+  ${EPISODE}
+`
+export const EPISODE_QUERY = gql`
+  query Episode($id: ID!) {
+    episode(id: $id) {
+      ...episode
+      ...episodeExtended
+    }
+  }
+  ${EPISODE}
+  ${EPISODE_EXTENDEDS}
 `
