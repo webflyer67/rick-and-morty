@@ -1,6 +1,7 @@
-import type { ILocation } from '@/types/dataset/ILocation'
-import type { IInfo } from '@/types/IInfo'
 import type { ComputedRef } from 'vue'
+import type { IInfo } from '@/types/IInfo'
+import type { ILocation } from '@/types/dataset/ILocation'
+import type { IQueryLocation } from '@/types/query/IQueryLocation'
 
 import { computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
@@ -10,7 +11,9 @@ import { assertLocation } from '@/assertions/assertLocation'
 
 /** Логика работы с выборкой локаций */
 export function useLocations(page: ComputedRef<number>) {
-  const { result, loading, error } = useQuery(LOCATIONS_QUERY, () => ({ page: page.value }))
+  const { result, loading, error } = useQuery<IQueryLocation>(LOCATIONS_QUERY, () => ({
+    page: page.value
+  }))
 
   const info: ComputedRef<IInfo> = computed(() => {
     let info = { count: 0, pages: 0 }

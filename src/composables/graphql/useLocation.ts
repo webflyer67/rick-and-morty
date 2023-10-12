@@ -1,6 +1,7 @@
+import type { ComputedRef } from 'vue'
 import type { TID } from '@/types/types'
 import type { ILocationExtended } from '@/types/dataset/ILocationExtended'
-import type { ComputedRef } from 'vue'
+import type { IQueryLocationExtended } from '@/types/query/IQueryLocationExtended'
 
 import { computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
@@ -9,7 +10,9 @@ import { assertLocationExtended } from '@/assertions/assertLocationExtended'
 
 /** Логика работы со страницей локации */
 export function useLocation(id: ComputedRef<TID>) {
-  const { result, loading, error } = useQuery(LOCATION_QUERY, () => ({ id: id.value }))
+  const { result, loading, error } = useQuery<IQueryLocationExtended>(LOCATION_QUERY, () => ({
+    id: id.value
+  }))
 
   /** Объект с локацией */
   const item: ComputedRef<ILocationExtended | null> = computed(() => {

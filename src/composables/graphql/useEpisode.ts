@@ -1,6 +1,7 @@
+import type { ComputedRef } from 'vue'
 import type { TID } from '@/types/types'
 import type { IEpisodeExtended } from '@/types/dataset/IEpisodeExtended'
-import type { ComputedRef } from 'vue'
+import type { IQueryEpisodeExtended } from '@/types/query/IQueryEpisodeExtended'
 
 import { computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
@@ -9,7 +10,9 @@ import { assertEpisodeExtended } from '@/assertions/assertEpisodeExtended'
 
 /** Логика работы со страницей серии */
 export function useEpisode(id: ComputedRef<TID>) {
-  const { result, loading, error } = useQuery(EPISODE_QUERY, () => ({ id: id.value }))
+  const { result, loading, error } = useQuery<IQueryEpisodeExtended>(EPISODE_QUERY, () => ({
+    id: id.value
+  }))
 
   /** Объект с серией */
   const item: ComputedRef<IEpisodeExtended | null> = computed(() => {

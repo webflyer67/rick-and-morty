@@ -1,6 +1,7 @@
+import type { ComputedRef } from 'vue'
 import type { TID } from '@/types/types'
 import type { ICharacterExtended } from '@/types/dataset/ICharacterExtended'
-import type { ComputedRef } from 'vue'
+import type { IQueryCharacterExtended } from '@/types/query/IQueryCharacterExtended'
 
 import { computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
@@ -9,7 +10,9 @@ import { assertCharacterExtended } from '@/assertions/assertCharacterExtended'
 
 /** Логика работы со страницей персонажа */
 export function useCharacter(id: ComputedRef<TID>) {
-  const { result, loading, error } = useQuery(CHARACTER_QUERY, () => ({ id: id.value }))
+  const { result, loading, error } = useQuery<IQueryCharacterExtended>(CHARACTER_QUERY, () => ({
+    id: id.value
+  }))
 
   /** Объект с персонажем */
   const item: ComputedRef<ICharacterExtended | null> = computed(() => {

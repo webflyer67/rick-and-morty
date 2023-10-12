@@ -1,6 +1,7 @@
-import type { IEpisode } from '@/types/dataset/IEpisode'
-import type { IInfo } from '@/types/IInfo'
 import type { ComputedRef } from 'vue'
+import type { IInfo } from '@/types/IInfo'
+import type { IEpisode } from '@/types/dataset/IEpisode'
+import type { IQueryEpisode } from '@/types/query/IQueryEpisode'
 
 import { computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
@@ -10,7 +11,9 @@ import { assertEpisode } from '@/assertions/assertEpisode'
 
 /** Логика работы с выборкой серий */
 export function useEpisodes(page: ComputedRef<number>) {
-  const { result, loading, error } = useQuery(EPISODES_QUERY, () => ({ page: page.value }))
+  const { result, loading, error } = useQuery<IQueryEpisode>(EPISODES_QUERY, () => ({
+    page: page.value
+  }))
 
   const info: ComputedRef<IInfo> = computed(() => {
     let info = { count: 0, pages: 0 }
