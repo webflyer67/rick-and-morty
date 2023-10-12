@@ -1,15 +1,17 @@
-import { useQuery } from '@vue/apollo-composable'
-import { computed, type ComputedRef } from 'vue'
-import { LOCATION_QUERY } from '@/graphql/QUERY'
-
-import type { IResult } from '@/types/IResult'
-import type { ILocationExtended } from '@/types/dataset/ILocationExtended'
-import { assertLocationExtended } from '@/assertions/assertLocationExtended'
 import type { TID } from '@/types/types'
+import type { ILocationExtended } from '@/types/dataset/ILocationExtended'
+import type { ComputedRef } from 'vue'
 
-export function useLocation(id: ComputedRef<TID>): IResult<ILocationExtended> {
+import { computed } from 'vue'
+import { useQuery } from '@vue/apollo-composable'
+import { LOCATION_QUERY } from '@/graphql/QUERY'
+import { assertLocationExtended } from '@/assertions/assertLocationExtended'
+
+/** Логика работы со страницей локации */
+export function useLocation(id: ComputedRef<TID>) {
   const { result, loading, error } = useQuery(LOCATION_QUERY, () => ({ id: id.value }))
 
+  /** Объект с локацией */
   const item: ComputedRef<ILocationExtended | null> = computed(() => {
     let item = null
     if (result.value?.location) {

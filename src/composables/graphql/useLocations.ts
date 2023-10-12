@@ -1,26 +1,32 @@
-// mouse.js
-import { useQuery } from '@vue/apollo-composable'
-import { computed, type ComputedRef } from 'vue'
-import { LOCATIONS_QUERY } from '@/graphql/QUERY'
-
-import type { IResults } from '@/types/IResults'
 import type { ILocation } from '@/types/dataset/ILocation'
-import type { IResultInfo } from '@/types/IResultInfo'
+import type { IInfo } from '@/types/IInfo'
+import type { ComputedRef } from 'vue'
+
+import { computed } from 'vue'
+import { useQuery } from '@vue/apollo-composable'
+import { LOCATIONS_QUERY } from '@/graphql/QUERY'
+import { assertInfo } from '@/assertions/assertInfo'
 import { assertLocation } from '@/assertions/assertLocation'
 
-export function useLocations(page: ComputedRef<number>): IResults<ILocation> {
+/** Логика работы с выборкой локаций */
+export function useLocations(page: ComputedRef<number>) {
   const { result, loading, error } = useQuery(LOCATIONS_QUERY, () => ({ page: page.value }))
 
-  const info: ComputedRef<IResultInfo> = computed(() => {
-    return result.value?.locations?.info ?? { count: 0, pages: 0 }
+  const info: ComputedRef<IInfo> = computed(() => {
+    let info = { count: 0, pages: 0 }
+    if (result.value?.characters?.info) {
+      info = result.value?.characters?.info
+      assertInfo(info)
+    }
+    return info
   })
 
+  /** Массив объектов с локациями */
   const items: ComputedRef<Array<ILocation>> = computed(() => {
     const locations = result.value?.locations?.results ?? []
     for (const location of locations) {
       assertLocation(location)
     }
-
     return locations
   })
 

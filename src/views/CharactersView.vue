@@ -1,28 +1,11 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
-// import { computed, type ComputedRef } from 'vue'
-import type { IResults } from '@/types/IResults'
-import type { ICharacter } from '@/types/dataset/ICharacter'
 import { useCharacters } from '@/composables/graphql/useCharacters'
 import { useRouteHelpers } from '@/composables/useRouteHelpers'
-import type { TID } from '@/types/types'
 
-const router = useRouter()
-const { realPage } = useRouteHelpers()
+import CardCharacter from '@/components/cards/CardCharacter.vue'
 
-function moreClick(id: TID) {
-  router.push({ name: 'character', params: { id } })
-}
-
-function pageClick(page: number) {
-  if (page == 1) {
-    router.push({ name: 'charactersFirst' })
-  } else {
-    router.push({ name: 'characters', params: { page } })
-  }
-}
-
-const { info, items, loading }: IResults<ICharacter> = useCharacters(realPage)
+const { realPage, pageClick } = useRouteHelpers()
+const { info, items, loading } = useCharacters(realPage)
 </script>
 
 <template>
@@ -31,7 +14,7 @@ const { info, items, loading }: IResults<ICharacter> = useCharacters(realPage)
       ><v-col>Total items: {{ info.count }}</v-col></v-row
     >
     <v-pagination
-      @update:modelValue="pageClick($event)"
+      @update:modelValue="pageClick($event, 'characters')"
       color="primary"
       :modelValue="realPage"
       :length="info.pages"
@@ -43,35 +26,10 @@ const { info, items, loading }: IResults<ICharacter> = useCharacters(realPage)
         :key="item.id"
         class="v-col-sm-6 v-col-md-4 v-col-lg-3 v-col-xl-2"
       >
-        <v-card class="mx-auto elevation-10" max-width="100%">
-          <v-img class="align-end text-white" :src="item.image" cover>
-            <v-card-title> #{{ item.id }}: {{ item.name }}</v-card-title>
-          </v-img>
-
-          <v-card-subtitle class="pt-4">
-            Species: {{ item.species }}
-            <span v-if="item.type">({{ item.type }})</span>
-          </v-card-subtitle>
-          <v-card-subtitle class="pt-4"> Gender: {{ item.gender }} </v-card-subtitle>
-          <v-card-subtitle class="pt-4"> Status: {{ item.status }} </v-card-subtitle>
-          <v-card-actions class="justify-end">
-            <v-btn @click="moreClick(item.id)" color="primary"> More... </v-btn>
-          </v-card-actions>
-        </v-card>
+        <card-character :item="item" showMore />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
-<style lang="scss" scoped>
-.v-card-title {
-  text-shadow: 1px 1px 2px black;
-}
-
-.v-card-subtitle {
-  span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

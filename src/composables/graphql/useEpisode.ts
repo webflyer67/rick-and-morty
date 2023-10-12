@@ -1,15 +1,17 @@
-import { useQuery } from '@vue/apollo-composable'
-import { computed, type ComputedRef } from 'vue'
-import { EPISODE_QUERY } from '@/graphql/QUERY'
-
-import type { IResult } from '@/types/IResult'
-import type { IEpisodeExtended } from '@/types/dataset/IEpisodeExtended'
-import { assertEpisodeExtended } from '@/assertions/assertEpisodeExtended'
 import type { TID } from '@/types/types'
+import type { IEpisodeExtended } from '@/types/dataset/IEpisodeExtended'
+import type { ComputedRef } from 'vue'
 
-export function useEpisode(id: ComputedRef<TID>): IResult<IEpisodeExtended> {
+import { computed } from 'vue'
+import { useQuery } from '@vue/apollo-composable'
+import { EPISODE_QUERY } from '@/graphql/QUERY'
+import { assertEpisodeExtended } from '@/assertions/assertEpisodeExtended'
+
+/** Логика работы со страницей серии */
+export function useEpisode(id: ComputedRef<TID>) {
   const { result, loading, error } = useQuery(EPISODE_QUERY, () => ({ id: id.value }))
 
+  /** Объект с серией */
   const item: ComputedRef<IEpisodeExtended | null> = computed(() => {
     let item = null
     if (result.value?.episode) {

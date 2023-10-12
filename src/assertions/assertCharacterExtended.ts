@@ -1,29 +1,31 @@
 import type { ICharacterExtended } from '@/types/dataset/ICharacterExtended'
+
 import { errLog } from '@/assertions/errLog'
 import { assertCharacter } from '@/assertions/assertCharacter'
 import { assertEpisode } from '@/assertions/assertEpisode'
 import { assertLocation } from '@/assertions/assertLocation'
 
-function assertCharacterExtended(character: unknown): asserts character is ICharacterExtended {
-  if (typeof character === 'object' && !!character) {
-    assertCharacter(character)
+/** Проверка данных API Персонаж расширенный */
+function assertCharacterExtended(obj: unknown): asserts obj is ICharacterExtended {
+  if (typeof obj === 'object' && !!obj) {
+    assertCharacter(obj)
 
-    if (!('location' in character)) {
-      errLog("Поле 'location'(ILocation) должно быть", character)
+    if (!('location' in obj)) {
+      errLog("Поле 'location'(ILocation) должно быть", obj)
     } else {
-      assertLocation(character.location)
+      assertLocation(obj.location)
     }
 
-    if (!('origin' in character)) {
-      errLog("Поле 'origin'(ILocation) должно быть", character)
+    if (!('origin' in obj)) {
+      errLog("Поле 'origin'(ILocation) должно быть", obj)
     } else {
-      assertLocation(character.origin)
+      assertLocation(obj.origin)
     }
 
-    if (!('episodes' in character) || !Array.isArray(character.episodes)) {
-      errLog("Поле 'episodes'(IEpisode[]) должно быть массивом", character)
+    if (!('episodes' in obj) || !Array.isArray(obj.episodes)) {
+      errLog("Поле 'episodes'(IEpisode[]) должно быть массивом", obj)
     } else {
-      for (const episode of character.episodes) {
+      for (const episode of obj.episodes) {
         assertEpisode(episode)
       }
     }

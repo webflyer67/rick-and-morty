@@ -1,35 +1,32 @@
 import type { ILocation } from '@/types/dataset/ILocation'
-// import { errLog } from '@/src/assertions/errLog'
+
 import { errLog } from '@/assertions/errLog'
 
-function assertLocation(location: unknown): asserts location is ILocation {
-  if (typeof location === 'object' && !!location) {
+/** Проверка данных API Локация */
+function assertLocation(obj: unknown): asserts obj is ILocation {
+  if (typeof obj === 'object' && !!obj) {
     if (
-      !('id' in location) ||
-      !['string', 'number'].includes(typeof location.id) ||
-      location.id == '' ||
-      location.id == 0
+      !('id' in obj) ||
+      !['string', 'number'].includes(typeof obj.id) ||
+      obj.id == '' ||
+      obj.id == 0
     ) {
-      errLog("Поле 'id'('string'|'number') должно быть не пустым", location)
+      errLog("Поле 'id'('string'|'number') должно быть не пустым", obj)
     }
 
-    if (
-      !('name' in location) ||
-      !['string'].includes(typeof location.name) ||
-      location.name == ''
-    ) {
-      errLog(`Поле 'name'('string') должно быть не пустым`, location)
+    if (!('name' in obj) || !['string'].includes(typeof obj.name) || obj.name == '') {
+      errLog(`Поле 'name'('string') должно быть не пустым`, obj)
     }
 
-    if (!('type' in location) || !['string'].includes(typeof location.type)) {
-      errLog(`Поле 'type'('string') должно быть`, location)
+    if (!('type' in obj) || !['string'].includes(typeof obj.type)) {
+      errLog(`Поле 'type'('string') должно быть`, obj)
     }
 
-    if (!('dimension' in location) || !['string'].includes(typeof location.dimension)) {
-      errLog(`Поле 'dimension'('string') должно быть`, location)
+    if (!('dimension' in obj) || !['string'].includes(typeof obj.dimension)) {
+      errLog(`Поле 'dimension'('string') должно быть`, obj)
     }
   } else {
-    console.error('Location не объект', 'location:', location)
+    console.error('Location не объект', obj)
   }
 }
 

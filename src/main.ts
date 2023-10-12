@@ -1,5 +1,3 @@
-import '@/assets/main.scss'
-
 import { createApp, provide, h } from 'vue'
 import App from '@/App.vue'
 import { router } from '@/plugins/router'
