@@ -8,7 +8,7 @@ import { useQuery } from '@vue/apollo-composable'
 import { EPISODE_QUERY } from '@/graphql/QUERY'
 import { assertEpisodeExtended } from '@/assertions/assertEpisodeExtended'
 
-/** Логика работы со страницей серии */
+/** Получение данных для страницы серии */
 export function useEpisode(id: ComputedRef<TID>) {
   const { result, loading, error } = useQuery<IQueryEpisodeExtended>(EPISODE_QUERY, () => ({
     id: id.value

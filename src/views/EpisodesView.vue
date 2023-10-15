@@ -1,25 +1,32 @@
 <script setup lang="ts">
 import { useEpisodes } from '@/composables/graphql/useEpisodes'
 import { useRouteHelpers } from '@/composables/useRouteHelpers'
+import { useCountString } from '@/composables/useCountString'
 
 import CardEpisode from '@/components/cards/CardEpisode.vue'
 
 const { realPage, pageClick } = useRouteHelpers()
 const { info, items, loading } = useEpisodes(realPage)
+const { countString } = useCountString(info)
 </script>
 
 <template>
   <v-container>
-    <v-row
-      ><v-col>Total items: {{ info.count }}</v-col></v-row
-    >
-    <v-pagination
-      @update:modelValue="pageClick($event, 'episodes')"
-      color="primary"
-      :modelValue="realPage"
-      :length="info.pages"
-      :total-visible="8"
-    ></v-pagination>
+    <v-row>
+      <v-col>
+        <v-pagination
+          @update:modelValue="pageClick($event, 'episodes')"
+          color="primary"
+          :modelValue="realPage"
+          :length="info.pages"
+          :total-visible="8"
+        />
+      </v-col>
+      <v-col class="d-flex align-center">
+        <div>{{ countString }}</div>
+      </v-col>
+    </v-row>
+
     <v-row v-if="!loading && items" class="justify-center">
       <v-col
         v-for="item in items"

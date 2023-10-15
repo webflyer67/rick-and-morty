@@ -1,7 +1,8 @@
 import type { ICharacter } from '@/types/dataset/ICharacter'
-
-import { Status, Gender } from '@/assets/enums'
 import { errLog } from '@/assertions/errLog'
+
+import { status, gender } from '@/assets/constants'
+import type { TGender, TStatus } from '@/types/types'
 
 /** Проверка данных API Персонаж */
 function assertCharacter(obj: unknown): asserts obj is ICharacter {
@@ -22,17 +23,17 @@ function assertCharacter(obj: unknown): asserts obj is ICharacter {
     if (
       !('status' in obj) ||
       typeof obj.status !== 'string' ||
-      !Object.keys(Status).includes(obj.status)
+      !status.includes(obj.status as TStatus)
     ) {
-      errLog(`Поле 'status'('string') должно быть ${Object.keys(Status).join(' | ')}`, obj)
+      errLog(`Поле 'status'('string') должно быть ${status.join(' | ')}`, obj)
     }
 
     if (
       !('gender' in obj) ||
       typeof obj.gender !== 'string' ||
-      !Object.keys(Gender).includes(obj.gender)
+      !gender.includes(obj.gender as TGender)
     ) {
-      errLog(`Поле 'gender'('string') должно быть ${Object.keys(Gender).join(' | ')}`, obj)
+      errLog(`Поле 'gender'('string') должно быть ${gender.join(' | ')}`, obj)
     }
 
     if (!('species' in obj) || !['string'].includes(typeof obj.species) || obj.species == '') {

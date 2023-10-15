@@ -70,8 +70,8 @@ export const EPISODE_EXTENDEDS = gql`
 `
 
 export const CHARACTERS_QUERY = gql`
-  query Characters($page: Int) {
-    characters(page: $page) {
+  query Characters($page: Int, $filter: FilterCharacter) {
+    characters(page: $page, filter: $filter) {
       info {
         ...info
       }
@@ -122,7 +122,7 @@ export const LOCATION_QUERY = gql`
 `
 
 export const EPISODES_QUERY = gql`
-  query Episode($page: Int) {
+  query Episodes($page: Int) {
     episodes(page: $page) {
       info {
         ...info

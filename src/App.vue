@@ -7,7 +7,7 @@ const { menu, currentMenuItem } = useMenu()
 
 <template>
   <v-layout class="rounded rounded-md">
-    <v-app-bar color="primary" title="Application bar">
+    <v-app-bar color="primary" title="Rick and Morty">
       <v-tabs :model-value="currentMenuItem" bg-color="primary" :mandatory="false">
         <v-tab v-for="item in menu" :key="item.id" :value="item" :to="item.to">
           {{ item.id }}

@@ -1,10 +1,9 @@
-// apollo.config.js
-// export default {
+// apollo.config.js 
 // eslint-disable-next-line no-undef
 module.exports = {
     client: {
         service: {
-            name: 'my-app',
+            name: 'rick-and-morty',
             // URL to the GraphQL API
             url: 'https://rickandmortyapi.com/graphql',
         },

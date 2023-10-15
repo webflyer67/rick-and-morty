@@ -24,10 +24,8 @@ defineProps({
       <v-card-title> #{{ item.id }}: {{ item.name }}</v-card-title>
     </v-img>
 
-    <v-card-subtitle class="pt-4">
-      Species: {{ item.species }}
-      <span v-if="item.type">({{ item.type }})</span>
-    </v-card-subtitle>
+    <v-card-subtitle class="pt-4"> Species: {{ item.species }} </v-card-subtitle>
+    <v-card-subtitle class="pt-4"> Type: {{ item.type ? item.type : '-' }} </v-card-subtitle>
     <v-card-subtitle class="pt-4"> Gender: {{ item.gender }} </v-card-subtitle>
     <v-card-subtitle class="pt-4"> Status: {{ item.status }} </v-card-subtitle>
     <v-card-actions class="justify-end">
@@ -44,9 +42,7 @@ defineProps({
 }
 
 .v-card-subtitle {
-  span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

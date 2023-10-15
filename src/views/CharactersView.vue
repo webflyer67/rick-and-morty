@@ -1,25 +1,38 @@
 <script setup lang="ts">
 import { useCharacters } from '@/composables/graphql/useCharacters'
 import { useRouteHelpers } from '@/composables/useRouteHelpers'
+import { useCharactersFilter } from '@/composables/useCharactersFilter'
+import { useCountString } from '@/composables/useCountString'
 
+import CharactersFilters from '@/components/CharactersFilters.vue'
 import CardCharacter from '@/components/cards/CardCharacter.vue'
 
 const { realPage, pageClick } = useRouteHelpers()
-const { info, items, loading } = useCharacters(realPage)
+const { modalValue } = useCharactersFilter()
+const { info, items, loading } = useCharacters(realPage, modalValue)
+const { countString } = useCountString(info)
 </script>
 
 <template>
   <v-container>
-    <v-row
-      ><v-col>Total items: {{ info.count }}</v-col></v-row
-    >
-    <v-pagination
-      @update:modelValue="pageClick($event, 'characters')"
-      color="primary"
-      :modelValue="realPage"
-      :length="info.pages"
-      :total-visible="8"
-    ></v-pagination>
+    <v-row>
+      <characters-filters />
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-pagination
+          @update:modelValue="pageClick($event, 'characters')"
+          color="primary"
+          :modelValue="realPage"
+          :length="info.pages"
+          :total-visible="8"
+        />
+      </v-col>
+      <v-col class="d-flex align-center">
+        <div>{{ countString }}</div>
+      </v-col>
+    </v-row>
+
     <v-row v-if="!loading && items" class="justify-center">
       <v-col
         v-for="item in items"

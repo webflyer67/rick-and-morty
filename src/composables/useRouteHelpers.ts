@@ -29,9 +29,9 @@ export function useRouteHelpers() {
    */
   function pageClick(page: number, menuId: 'characters' | 'locations' | 'episodes') {
     if (page == 1) {
-      router.push({ name: `${menuId}First` })
+      router.push({ name: `${menuId}First`, query: route.query })
     } else {
-      router.push({ name: menuId, params: { page } })
+      router.push({ name: menuId, params: { page }, query: route.query })
     }
   }
 

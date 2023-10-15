@@ -8,7 +8,7 @@ import { useQuery } from '@vue/apollo-composable'
 import { LOCATION_QUERY } from '@/graphql/QUERY'
 import { assertLocationExtended } from '@/assertions/assertLocationExtended'
 
-/** Логика работы со страницей локации */
+/** Получение данных для страницы локации */
 export function useLocation(id: ComputedRef<TID>) {
   const { result, loading, error } = useQuery<IQueryLocationExtended>(LOCATION_QUERY, () => ({
     id: id.value

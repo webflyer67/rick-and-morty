@@ -1,12 +1,17 @@
-import type { Status, Gender } from '@/assets/enums'
-
 /** Id элемента */
-type TID = string | number
+export type TID = string | number
 
 /** Статусы персонажа */
-type TStatus = Status.Alive | Status.Dead | Status.unknown
+export type TStatus = 'Alive' | 'Dead' | 'unknown'
 
 /** Пол персонажа */
-type TGender = Gender.Female | Gender.Male | Gender.Genderless | Gender.unknown
+export type TGender = 'Female' | 'Male' | 'Genderless' | 'unknown'
 
-export type { TID, TStatus, TGender }
+/** Статусы персонажа */
+export type TStatusFilter = TStatus | 'Any'
+
+/** Пол персонажа */
+export type TGenderFilter = TGender | 'Any'
+
+/** Возможные поля для фильтров */
+export type TFilterFields = 'name' | 'species' | 'type' | 'gender' | 'status'

@@ -8,7 +8,7 @@ import { useQuery } from '@vue/apollo-composable'
 import { CHARACTER_QUERY } from '@/graphql/QUERY'
 import { assertCharacterExtended } from '@/assertions/assertCharacterExtended'
 
-/** Логика работы со страницей персонажа */
+/** Получение данных для страницы персонажа */
 export function useCharacter(id: ComputedRef<TID>) {
   const { result, loading, error } = useQuery<IQueryCharacterExtended>(CHARACTER_QUERY, () => ({
     id: id.value

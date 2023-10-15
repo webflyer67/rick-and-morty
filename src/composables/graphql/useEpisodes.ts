@@ -9,7 +9,7 @@ import { EPISODES_QUERY } from '@/graphql/QUERY'
 import { assertInfo } from '@/assertions/assertInfo'
 import { assertEpisode } from '@/assertions/assertEpisode'
 
-/** Логика работы с выборкой серий */
+/** Получение данных для страницы серий */
 export function useEpisodes(page: ComputedRef<number>) {
   const { result, loading, error } = useQuery<IQueryEpisode>(EPISODES_QUERY, () => ({
     page: page.value

@@ -9,7 +9,7 @@ import { LOCATIONS_QUERY } from '@/graphql/QUERY'
 import { assertInfo } from '@/assertions/assertInfo'
 import { assertLocation } from '@/assertions/assertLocation'
 
-/** Логика работы с выборкой локаций */
+/** Получение данных для страницы локаций */
 export function useLocations(page: ComputedRef<number>) {
   const { result, loading, error } = useQuery<IQueryLocation>(LOCATIONS_QUERY, () => ({
     page: page.value
