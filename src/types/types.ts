@@ -14,4 +14,11 @@ export type TStatusFilter = TStatus | 'Any'
 export type TGenderFilter = TGender | 'Any'
 
 /** Возможные поля для фильтров */
-export type TFilterFields = 'name' | 'species' | 'type' | 'gender' | 'status'
+export type TFilterFields =
+  | 'name'
+  | 'species'
+  | 'type'
+  | 'gender'
+  | 'status'
+  | 'dimension'
+  | 'episode'

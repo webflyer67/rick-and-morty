@@ -2,6 +2,7 @@ import type { ComputedRef } from 'vue'
 import type { IInfo } from '@/types/IInfo'
 import type { IEpisode } from '@/types/dataset/IEpisode'
 import type { IQueryEpisode } from '@/types/query/IQueryEpisode'
+import type { IRouteQueryFilters } from '@/types/TRouteQueryFilters'
 
 import { computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
@@ -10,10 +11,25 @@ import { assertInfo } from '@/assertions/assertInfo'
 import { assertEpisode } from '@/assertions/assertEpisode'
 
 /** Получение данных для страницы серий */
-export function useEpisodes(page: ComputedRef<number>) {
-  const { result, loading, error } = useQuery<IQueryEpisode>(EPISODES_QUERY, () => ({
-    page: page.value
-  }))
+export function useEpisodes(
+  page: ComputedRef<number>,
+  modalValue: ComputedRef<IRouteQueryFilters>
+) {
+  const { result, loading, error } = useQuery<IQueryEpisode>(EPISODES_QUERY, () => {
+    const filter: IRouteQueryFilters = {}
+    if (modalValue.value.name != '') {
+      filter.name = modalValue.value.name
+    }
+    if (modalValue.value.episode != '') {
+      filter.episode = modalValue.value.episode
+    }
+
+    console.log(9999, filter)
+    return {
+      page: page.value,
+      filter
+    }
+  })
 
   const info: ComputedRef<IInfo> = computed(() => {
     let info = { count: 0, pages: 0 }

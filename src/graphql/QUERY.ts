@@ -96,8 +96,8 @@ export const CHARACTER_QUERY = gql`
 `
 
 export const LOCATIONS_QUERY = gql`
-  query Locations($page: Int) {
-    locations(page: $page) {
+  query Locations($page: Int, $filter: FilterLocation) {
+    locations(page: $page, filter: $filter) {
       info {
         ...info
       }
@@ -122,8 +122,8 @@ export const LOCATION_QUERY = gql`
 `
 
 export const EPISODES_QUERY = gql`
-  query Episodes($page: Int) {
-    episodes(page: $page) {
+  query Episodes($page: Int, $filter: FilterEpisode) {
+    episodes(page: $page, filter: $filter) {
       info {
         ...info
       }

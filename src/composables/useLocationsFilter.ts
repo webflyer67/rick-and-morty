@@ -4,11 +4,11 @@ import type { IRouteQueryFilters } from '@/types/TRouteQueryFilters'
 
 import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { assertCharacterFilter } from '@/assertions/assertCharacterFilter'
+import { assertLocationFilter } from '@/assertions/assertLocationFilter'
 import { statusFilter, genderFilter } from '@/assets/constants'
 
 /** Фильтры для страницы персонажей */
-export function useCharactersFilter() {
+export function useLocationsFilter() {
   const router = useRouter()
   const route = useRoute()
 
@@ -18,14 +18,10 @@ export function useCharactersFilter() {
   const modalValue: ComputedRef<IRouteQueryFilters> = computed(() => {
     const modalValue = { ...route.query } as unknown as IRouteQueryFilters
 
-    assertCharacterFilter(modalValue)
+    assertLocationFilter(modalValue)
     if (typeof modalValue.name === 'undefined') modalValue.name = ''
-    if (typeof modalValue.species === 'undefined') modalValue.species = ''
+    if (typeof modalValue.dimension === 'undefined') modalValue.dimension = ''
     if (typeof modalValue.type === 'undefined') modalValue.type = ''
-    if (typeof modalValue.status === 'undefined' || !statusFilter.includes(modalValue.status))
-      modalValue.status = 'Any'
-    if (typeof modalValue.gender === 'undefined' || !genderFilter.includes(modalValue.gender))
-      modalValue.gender = 'Any'
 
     return modalValue
   })
@@ -38,7 +34,8 @@ export function useCharactersFilter() {
     ) {
       delete query[filterId]
     }
-    router.push({ name: 'charactersFirst', query })
+    router.push({ name: 'locationsFirst', query })
   }
+
   return { itemsStatus, itemsGender, modalValue, filterClick }
 }

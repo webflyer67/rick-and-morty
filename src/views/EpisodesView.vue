@@ -1,17 +1,23 @@
 <script setup lang="ts">
 import { useEpisodes } from '@/composables/graphql/useEpisodes'
 import { useRouteHelpers } from '@/composables/useRouteHelpers'
+import { useEpisodesFilter } from '@/composables/useEpisodesFilter'
 import { useCountString } from '@/composables/useCountString'
 
+import EpisodesFilters from '@/components/EpisodesFilters.vue'
 import CardEpisode from '@/components/cards/CardEpisode.vue'
 
 const { realPage, pageClick } = useRouteHelpers()
-const { info, items, loading } = useEpisodes(realPage)
+const { modalValue } = useEpisodesFilter()
+const { info, items, loading } = useEpisodes(realPage, modalValue)
 const { countString } = useCountString(info)
 </script>
 
 <template>
   <v-container>
+    <v-row>
+      <episodes-filters />
+    </v-row>
     <v-row>
       <v-col>
         <v-pagination

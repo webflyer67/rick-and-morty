@@ -1,17 +1,23 @@
 <script setup lang="ts">
 import { useLocations } from '@/composables/graphql/useLocations'
 import { useRouteHelpers } from '@/composables/useRouteHelpers'
+import { useLocationsFilter } from '@/composables/useLocationsFilter'
 import { useCountString } from '@/composables/useCountString'
 
+import LocationsFilters from '@/components/LocationsFilters.vue'
 import CardLocation from '@/components/cards/CardLocation.vue'
 
 const { realPage, pageClick } = useRouteHelpers()
-const { info, items, loading } = useLocations(realPage)
+const { modalValue } = useLocationsFilter()
+const { info, items, loading } = useLocations(realPage, modalValue)
 const { countString } = useCountString(info)
 </script>
 
 <template>
   <v-container>
+    <v-row>
+      <locations-filters />
+    </v-row>
     <v-row>
       <v-col>
         <v-pagination

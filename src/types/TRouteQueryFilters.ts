@@ -10,4 +10,6 @@ export interface IRouteQueryFilters {
   type?: string
   gender?: TGenderFilter
   status?: TStatusFilter
+  dimension?: string
+  episode?: string
 }

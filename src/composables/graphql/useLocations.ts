@@ -2,6 +2,7 @@ import type { ComputedRef } from 'vue'
 import type { IInfo } from '@/types/IInfo'
 import type { ILocation } from '@/types/dataset/ILocation'
 import type { IQueryLocation } from '@/types/query/IQueryLocation'
+import type { IRouteQueryFilters } from '@/types/TRouteQueryFilters'
 
 import { computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
@@ -10,10 +11,27 @@ import { assertInfo } from '@/assertions/assertInfo'
 import { assertLocation } from '@/assertions/assertLocation'
 
 /** Получение данных для страницы локаций */
-export function useLocations(page: ComputedRef<number>) {
-  const { result, loading, error } = useQuery<IQueryLocation>(LOCATIONS_QUERY, () => ({
-    page: page.value
-  }))
+export function useLocations(
+  page: ComputedRef<number>,
+  modalValue: ComputedRef<IRouteQueryFilters>
+) {
+  const { result, loading, error } = useQuery<IQueryLocation>(LOCATIONS_QUERY, () => {
+    const filter: IRouteQueryFilters = {}
+    if (modalValue.value.name != '') {
+      filter.name = modalValue.value.name
+    }
+    if (modalValue.value.type != '') {
+      filter.type = modalValue.value.type
+    }
+    if (modalValue.value.dimension != '') {
+      filter.dimension = modalValue.value.dimension
+    }
+
+    return {
+      page: page.value,
+      filter
+    }
+  })
 
   const info: ComputedRef<IInfo> = computed(() => {
     let info = { count: 0, pages: 0 }
