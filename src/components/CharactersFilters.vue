@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useCharactersFilter } from '@/composables/useCharactersFilter'
-const { itemsStatus, itemsGender, modalValue, filterClick } = useCharactersFilter()
+const { itemsStatus, itemsGender, modalValue, filterClick, cancelClick } = useCharactersFilter()
 </script>
 
 <template>
@@ -9,6 +9,7 @@ const { itemsStatus, itemsGender, modalValue, filterClick } = useCharactersFilte
       label="Name"
       hide-details="auto"
       :model-value="modalValue.name"
+      density="comfortable"
       @update:model-value="filterClick($event, 'name')"
     />
   </v-col>
@@ -17,6 +18,7 @@ const { itemsStatus, itemsGender, modalValue, filterClick } = useCharactersFilte
       label="Species"
       hide-details="auto"
       :model-value="modalValue.species"
+      density="comfortable"
       @update:model-value="filterClick($event, 'species')"
     />
   </v-col>
@@ -25,6 +27,7 @@ const { itemsStatus, itemsGender, modalValue, filterClick } = useCharactersFilte
       label="Type"
       hide-details="auto"
       :model-value="modalValue.type"
+      density="comfortable"
       @update:model-value="filterClick($event, 'type')"
     />
   </v-col>
@@ -35,7 +38,7 @@ const { itemsStatus, itemsGender, modalValue, filterClick } = useCharactersFilte
       :items="itemsStatus"
       density="comfortable"
       label="Status"
-    ></v-select>
+    />
   </v-col>
   <v-col>
     <v-select
@@ -44,7 +47,10 @@ const { itemsStatus, itemsGender, modalValue, filterClick } = useCharactersFilte
       :items="itemsGender"
       density="comfortable"
       label="Gender"
-    ></v-select>
+    />
+  </v-col>
+  <v-col class="d-flex align-center flex-grow-0">
+    <v-icon @click="cancelClick()" size="large" color="primary" icon="mdi-cancel" />
   </v-col>
 </template>
 

@@ -37,5 +37,9 @@ export function useLocationsFilter() {
     router.push({ name: 'locationsFirst', query })
   }
 
-  return { itemsStatus, itemsGender, modalValue, filterClick }
+  function cancelClick() {
+    router.push({ name: 'locationsFirst' })
+  }
+
+  return { itemsStatus, itemsGender, modalValue, filterClick, cancelClick }
 }

@@ -40,5 +40,10 @@ export function useCharactersFilter() {
     }
     router.push({ name: 'charactersFirst', query })
   }
-  return { itemsStatus, itemsGender, modalValue, filterClick }
+
+  function cancelClick() {
+    router.push({ name: 'charactersFirst' })
+  }
+
+  return { itemsStatus, itemsGender, modalValue, filterClick, cancelClick }
 }

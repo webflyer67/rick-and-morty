@@ -36,5 +36,9 @@ export function useEpisodesFilter() {
     router.push({ name: 'episodesFirst', query })
   }
 
-  return { itemsStatus, itemsGender, modalValue, filterClick }
+  function cancelClick() {
+    router.push({ name: 'episodesFirst' })
+  }
+
+  return { itemsStatus, itemsGender, modalValue, filterClick, cancelClick }
 }

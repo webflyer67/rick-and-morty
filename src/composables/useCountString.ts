@@ -9,7 +9,11 @@ export function useCountString(info: ComputedRef<IInfo>) {
   /** Строка для отображения информации и количестве страниц(возле пагинатора) */
   const countString: ComputedRef<string> = computed(() => {
     const from = (realPage.value - 1) * 20 + 1
-    const to = info.value.count < realPage.value * 20 ? info.value.count : realPage.value * 20
+    const to = realPage.value * 20
+    if (info.value.count != null && info.value.count < realPage.value * 20) {
+      info.value.count
+    }
+
     return `${from} - ${to} of ${info.value.count}`
   })
   return {
