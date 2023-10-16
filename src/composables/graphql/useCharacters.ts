@@ -39,7 +39,7 @@ export function useCharacters(
   })
 
   const info: ComputedRef<IInfo> = computed(() => {
-    let info = { count: 0, pages: 0 }
+    let info: IInfo = { count: 0, pages: 0 }
     if (result.value?.characters?.info) {
       info = result.value?.characters?.info
       assertInfo(info)

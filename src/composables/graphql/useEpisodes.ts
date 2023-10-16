@@ -32,7 +32,7 @@ export function useEpisodes(
   })
 
   const info: ComputedRef<IInfo> = computed(() => {
-    let info = { count: 0, pages: 0 }
+    let info: IInfo = { count: 0, pages: 0 }
     if (result.value?.episodes?.info) {
       info = result.value?.episodes?.info
       assertInfo(info)

@@ -18,7 +18,7 @@ const { countString } = useCountString(info)
     <v-row>
       <locations-filters />
     </v-row>
-    <v-row>
+    <v-row v-if="info.pages != null && info.pages > 0">
       <v-col>
         <v-pagination
           @update:modelValue="pageClick($event, 'locations')"

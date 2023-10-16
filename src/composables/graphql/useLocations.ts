@@ -34,7 +34,7 @@ export function useLocations(
   })
 
   const info: ComputedRef<IInfo> = computed(() => {
-    let info = { count: 0, pages: 0 }
+    let info: IInfo = { count: 0, pages: 0 }
     if (result.value?.locations?.info) {
       info = result.value?.locations?.info
       assertInfo(info)

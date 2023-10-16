@@ -1,7 +1,7 @@
 /** Служебная информация  */
 export interface IInfo {
   /** Количество страниц */
-  count: number
+  count: number | null
   /** Количество элементов' */
-  pages: number
+  pages: number | null
 }
