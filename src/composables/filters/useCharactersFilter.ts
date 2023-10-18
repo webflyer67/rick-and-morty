@@ -2,6 +2,7 @@ import type { Ref, ComputedRef } from 'vue'
 import type { TStatusFilter, TGenderFilter, TFilterFields } from '@/types/types'
 import type { IRouteQueryFilters } from '@/types/TRouteQueryFilters'
 
+import _ from 'lodash'
 import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { assertCharacterFilter } from '@/assertions/assertCharacterFilter'
@@ -36,7 +37,7 @@ export function useCharactersFilter() {
    * @param val значение изменяемого фильтра
    * @param filterId название изменяемого фильтра
    */
-  function changeModalValue(val: any, filterId: TFilterFields): void {
+  function changeModalValueRun(val: any, filterId: TFilterFields) {
     const query = { ...route.query, [filterId]: val }
     if (
       query[filterId] === '' ||
@@ -46,6 +47,7 @@ export function useCharactersFilter() {
     }
     router.push({ name: 'charactersFirst', query })
   }
+  const changeModalValue = _.debounce(changeModalValueRun, 700, { maxWait: 2000 })
 
   /**
    * Очистка состояния фильтров страницы персонажей, происходит через роутер
