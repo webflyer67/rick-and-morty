@@ -5,7 +5,7 @@ import { assertCharacter } from '@/assertions/assertCharacter'
 import { assertEpisode } from '@/assertions/assertEpisode'
 import { assertLocation } from '@/assertions/assertLocation'
 
-/** Проверка данных API Персонаж расширенный */
+/** Проверка данных от сервера Персонаж расширенный */
 function assertCharacterExtended(obj: unknown): asserts obj is ICharacterExtended {
   if (typeof obj === 'object' && !!obj) {
     assertCharacter(obj)

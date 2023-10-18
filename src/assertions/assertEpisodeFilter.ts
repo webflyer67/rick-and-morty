@@ -2,7 +2,7 @@ import type { IRouteQueryFilters } from '@/types/TRouteQueryFilters'
 
 import { errLog } from '@/assertions/errLog'
 
-/** Проверка данных API Персонаж */
+/** Проверка данных от сервера Серия - фильтры */
 function assertEpisodeFilter(obj: unknown): asserts obj is IRouteQueryFilters {
   if (typeof obj === 'object' && !!obj) {
     if ('name' in obj && !['string'].includes(typeof obj.name)) {

@@ -2,7 +2,7 @@ import type { IEpisode } from '@/types/dataset/IEpisode'
 
 import { errLog } from '@/assertions/errLog'
 
-/** Проверка данных API Серия */
+/** Проверка данных от сервера Серия */
 function assertEpisode(obj: unknown): asserts obj is IEpisode {
   if (typeof obj === 'object' && !!obj) {
     if (

@@ -6,7 +6,7 @@ import type { IRouteQueryFilters } from '@/types/TRouteQueryFilters'
 
 import { computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
-import { CHARACTERS_QUERY } from '@/graphql/QUERY'
+import { CHARACTERS_QUERY } from '@/graphql/CHARACTERS_QUERY'
 import { assertInfo } from '@/assertions/assertInfo'
 import { assertCharacter } from '@/assertions/assertCharacter'
 

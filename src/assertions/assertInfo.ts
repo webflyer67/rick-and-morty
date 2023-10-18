@@ -2,7 +2,7 @@ import type { IInfo } from '@/types/IInfo'
 
 import { errLog } from '@/assertions/errLog'
 
-/** Проверка данных API Персонаж расширенный */
+/** Проверка данных от сервера Служебная информация */
 function assertInfo(obj: unknown): asserts obj is IInfo {
   if (typeof obj === 'object' && !!obj) {
     if (!('count' in obj) || !(typeof obj.count === 'number' || obj.count === null)) {

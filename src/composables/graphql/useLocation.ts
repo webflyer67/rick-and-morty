@@ -5,7 +5,7 @@ import type { IQueryLocationExtended } from '@/types/query/IQueryLocationExtende
 
 import { computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
-import { LOCATION_QUERY } from '@/graphql/QUERY'
+import { LOCATION_QUERY } from '@/graphql/LOCATION_QUERY'
 import { assertLocationExtended } from '@/assertions/assertLocationExtended'
 
 /** Получение данных для страницы локации */

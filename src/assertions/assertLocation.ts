@@ -2,7 +2,7 @@ import type { ILocation } from '@/types/dataset/ILocation'
 
 import { errLog } from '@/assertions/errLog'
 
-/** Проверка данных API Локация */
+/** Проверка данных от сервера Локация */
 function assertLocation(obj: unknown): asserts obj is ILocation {
   if (typeof obj === 'object' && !!obj) {
     if (

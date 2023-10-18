@@ -5,7 +5,7 @@ import type { IQueryCharacterExtended } from '@/types/query/IQueryCharacterExten
 
 import { computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
-import { CHARACTER_QUERY } from '@/graphql/QUERY'
+import { CHARACTER_QUERY } from '@/graphql/CHARACTER_QUERY'
 import { assertCharacterExtended } from '@/assertions/assertCharacterExtended'
 
 /** Получение данных для страницы персонажа */

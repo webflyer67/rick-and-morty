@@ -12,12 +12,14 @@ export function useCharactersFilter() {
   const router = useRouter()
   const route = useRoute()
 
+  /** Массив статусов персонажей */
   const itemsStatus: Ref<TStatusFilter[]> = ref(statusFilter)
+  /** Массив полов персонажей */
   const itemsGender: Ref<TGenderFilter[]> = ref(genderFilter)
 
+  /** Объект с состоянием фильтров страницы персонажей */
   const modalValue: ComputedRef<IRouteQueryFilters> = computed(() => {
     const modalValue = { ...route.query } as unknown as IRouteQueryFilters
-
     assertCharacterFilter(modalValue)
     if (typeof modalValue.name === 'undefined') modalValue.name = ''
     if (typeof modalValue.species === 'undefined') modalValue.species = ''
@@ -26,11 +28,15 @@ export function useCharactersFilter() {
       modalValue.status = 'Any'
     if (typeof modalValue.gender === 'undefined' || !genderFilter.includes(modalValue.gender))
       modalValue.gender = 'Any'
-
     return modalValue
   })
 
-  function filterClick(val: any, filterId: TFilterFields) {
+  /**
+   * Изменение состояния фильтров страницы персонажей, происходит через роутер
+   * @param val значение изменяемого фильтра
+   * @param filterId название изменяемого фильтра
+   */
+  function changeModalValue(val: any, filterId: TFilterFields): void {
     const query = { ...route.query, [filterId]: val }
     if (
       query[filterId] === '' ||
@@ -41,9 +47,12 @@ export function useCharactersFilter() {
     router.push({ name: 'charactersFirst', query })
   }
 
-  function cancelClick() {
+  /**
+   * Очистка состояния фильтров страницы персонажей, происходит через роутер
+   */
+  function clearModalValue(): void {
     router.push({ name: 'charactersFirst' })
   }
 
-  return { itemsStatus, itemsGender, modalValue, filterClick, cancelClick }
+  return { itemsStatus, itemsGender, modalValue, changeModalValue, clearModalValue }
 }

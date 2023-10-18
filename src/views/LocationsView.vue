@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useLocations } from '@/composables/graphql/useLocations'
 import { useRouteHelpers } from '@/composables/useRouteHelpers'
-import { useLocationsFilter } from '@/composables/useLocationsFilter'
+import { useLocationsFilter } from '@/composables/filters/useLocationsFilter'
 import { useCountString } from '@/composables/useCountString'
 
-import LocationsFilters from '@/components/LocationsFilters.vue'
+import LocationsFilters from '@/components/filters/LocationsFilters.vue'
 import CardLocation from '@/components/cards/CardLocation.vue'
 
 const { realPage, pageClick } = useRouteHelpers()

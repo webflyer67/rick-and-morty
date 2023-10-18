@@ -7,26 +7,32 @@ import { useRouter, useRoute } from 'vue-router'
 import { assertLocationFilter } from '@/assertions/assertLocationFilter'
 import { statusFilter, genderFilter } from '@/assets/constants'
 
-/** Фильтры для страницы персонажей */
+/** Фильтры для страницы локаций */
 export function useLocationsFilter() {
   const router = useRouter()
   const route = useRoute()
 
+  /** Массив статусов локаций */
   const itemsStatus: Ref<TStatusFilter[]> = ref(statusFilter)
+  /** Массив полов локаций */
   const itemsGender: Ref<TGenderFilter[]> = ref(genderFilter)
 
+  /** Объект с состоянием фильтров страницы локаций */
   const modalValue: ComputedRef<IRouteQueryFilters> = computed(() => {
     const modalValue = { ...route.query } as unknown as IRouteQueryFilters
-
     assertLocationFilter(modalValue)
     if (typeof modalValue.name === 'undefined') modalValue.name = ''
     if (typeof modalValue.dimension === 'undefined') modalValue.dimension = ''
     if (typeof modalValue.type === 'undefined') modalValue.type = ''
-
     return modalValue
   })
 
-  function filterClick(val: any, filterId: TFilterFields) {
+  /**
+   * Изменение состояния фильтров страницы локаций, происходит через роутер
+   * @param val значение изменяемого фильтра
+   * @param filterId название изменяемого фильтра
+   */
+  function changeModalValue(val: any, filterId: TFilterFields): void {
     const query = { ...route.query, [filterId]: val }
     if (
       query[filterId] === '' ||
@@ -37,9 +43,12 @@ export function useLocationsFilter() {
     router.push({ name: 'locationsFirst', query })
   }
 
-  function cancelClick() {
+  /**
+   * Очистка состояния фильтров страницы локаций, происходит через роутер
+   */
+  function clearModalValue(): void {
     router.push({ name: 'locationsFirst' })
   }
 
-  return { itemsStatus, itemsGender, modalValue, filterClick, cancelClick }
+  return { itemsStatus, itemsGender, modalValue, changeModalValue, clearModalValue }
 }

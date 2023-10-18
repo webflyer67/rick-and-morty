@@ -1,7 +1,7 @@
 import type { IInfo } from '@/types/IInfo'
 import type { ILocation } from '@/types/dataset/ILocation'
 
-/** Локация - данные от API */
+/** Локация - ответ от сервера */
 export interface IQueryLocation {
   /** Служебная информация */
   locations: {

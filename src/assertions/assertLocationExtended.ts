@@ -4,7 +4,7 @@ import { errLog } from '@/assertions/errLog'
 import { assertLocation } from '@/assertions/assertLocation'
 import { assertCharacter } from '@/assertions/assertCharacter'
 
-/** Проверка данных API Локация расширенный */
+/** Проверка данных от сервера Локация расширенный */
 function assertLocationExtended(obj: unknown): asserts obj is ILocationExtended {
   assertLocation(obj)
   if (!('residents' in obj) || !Array.isArray(obj.residents)) {

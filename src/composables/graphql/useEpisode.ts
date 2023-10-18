@@ -5,7 +5,7 @@ import type { IQueryEpisodeExtended } from '@/types/query/IQueryEpisodeExtended'
 
 import { computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
-import { EPISODE_QUERY } from '@/graphql/QUERY'
+import { EPISODE_QUERY } from '@/graphql/EPISODE_QUERY'
 import { assertEpisodeExtended } from '@/assertions/assertEpisodeExtended'
 
 /** Получение данных для страницы серии */

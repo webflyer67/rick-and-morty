@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useLocationsFilter } from '@/composables/useLocationsFilter'
-const { modalValue, filterClick, cancelClick } = useLocationsFilter()
+import { useLocationsFilter } from '@/composables/filters/useLocationsFilter'
+const { modalValue, changeModalValue, clearModalValue } = useLocationsFilter()
 </script>
 
 <template>
@@ -10,7 +10,7 @@ const { modalValue, filterClick, cancelClick } = useLocationsFilter()
       hide-details="auto"
       :model-value="modalValue.name"
       density="comfortable"
-      @update:model-value="filterClick($event, 'name')"
+      @update:model-value="changeModalValue($event, 'name')"
     />
   </v-col>
   <v-col>
@@ -19,7 +19,7 @@ const { modalValue, filterClick, cancelClick } = useLocationsFilter()
       hide-details="auto"
       :model-value="modalValue.dimension"
       density="comfortable"
-      @update:model-value="filterClick($event, 'dimension')"
+      @update:model-value="changeModalValue($event, 'dimension')"
     />
   </v-col>
   <v-col>
@@ -28,11 +28,11 @@ const { modalValue, filterClick, cancelClick } = useLocationsFilter()
       hide-details="auto"
       :model-value="modalValue.type"
       density="comfortable"
-      @update:model-value="filterClick($event, 'type')"
+      @update:model-value="changeModalValue($event, 'type')"
     />
   </v-col>
   <v-col class="d-flex align-center flex-grow-0">
-    <v-icon @click="cancelClick()" size="large" color="primary" icon="mdi-cancel" />
+    <v-icon @click="clearModalValue()" size="large" color="primary" icon="mdi-cancel" />
   </v-col>
 </template>
 

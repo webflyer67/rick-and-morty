@@ -4,7 +4,7 @@ import { errLog } from '@/assertions/errLog'
 import { assertEpisode } from '@/assertions/assertEpisode'
 import { assertCharacter } from '@/assertions/assertCharacter'
 
-/** Проверка данных API Серия расширенный */
+/** Проверка данных от сервера Серия расширенный */
 function assertEpisodeExtended(obj: unknown): asserts obj is IEpisodeExtended {
   assertEpisode(obj)
   if (!('characters' in obj) || !Array.isArray(obj.characters)) {

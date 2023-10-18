@@ -27,7 +27,7 @@ export function useRouteHelpers() {
    * @param page Номер страницы
    * @param menuId Id меню
    */
-  function pageClick(page: number, menuId: 'characters' | 'locations' | 'episodes') {
+  function pageClick(page: number, menuId: 'characters' | 'locations' | 'episodes'): void {
     if (page == 1) {
       router.push({ name: `${menuId}First`, query: route.query })
     } else {
@@ -35,7 +35,12 @@ export function useRouteHelpers() {
     }
   }
 
-  function moreClick(id: TID, menuId: 'character' | 'location' | 'episode') {
+  /**
+   * Обработчик нажатия на кнопку Подробнее...
+   * @param id id сущности(персожа/локации/серии)
+   * @param menuId название этой сущности
+   */
+  function moreClick(id: TID, menuId: 'character' | 'location' | 'episode'): void {
     router.push({ name: menuId, params: { id } })
   }
 

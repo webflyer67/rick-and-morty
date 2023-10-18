@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useCharacters } from '@/composables/graphql/useCharacters'
 import { useRouteHelpers } from '@/composables/useRouteHelpers'
-import { useCharactersFilter } from '@/composables/useCharactersFilter'
+import { useCharactersFilter } from '@/composables/filters/useCharactersFilter'
 import { useCountString } from '@/composables/useCountString'
 
-import CharactersFilters from '@/components/CharactersFilters.vue'
+import CharactersFilters from '@/components/filters/CharactersFilters.vue'
 import CardCharacter from '@/components/cards/CardCharacter.vue'
 
 const { realPage, pageClick } = useRouteHelpers()

@@ -6,7 +6,7 @@ import type { IRouteQueryFilters } from '@/types/TRouteQueryFilters'
 
 import { computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
-import { EPISODES_QUERY } from '@/graphql/QUERY'
+import { EPISODES_QUERY } from '@/graphql/EPISODES_QUERY'
 import { assertInfo } from '@/assertions/assertInfo'
 import { assertEpisode } from '@/assertions/assertEpisode'
 
@@ -23,8 +23,6 @@ export function useEpisodes(
     if (modalValue.value.episode != '') {
       filter.episode = modalValue.value.episode
     }
-
-    console.log(9999, filter)
     return {
       page: page.value,
       filter

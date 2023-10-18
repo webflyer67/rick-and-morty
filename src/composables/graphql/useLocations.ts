@@ -6,7 +6,7 @@ import type { IRouteQueryFilters } from '@/types/TRouteQueryFilters'
 
 import { computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
-import { LOCATIONS_QUERY } from '@/graphql/QUERY'
+import { LOCATIONS_QUERY } from '@/graphql/LOCATIONS_QUERY'
 import { assertInfo } from '@/assertions/assertInfo'
 import { assertLocation } from '@/assertions/assertLocation'
 
@@ -26,7 +26,6 @@ export function useLocations(
     if (modalValue.value.dimension != '') {
       filter.dimension = modalValue.value.dimension
     }
-
     return {
       page: page.value,
       filter

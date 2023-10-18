@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useEpisodes } from '@/composables/graphql/useEpisodes'
 import { useRouteHelpers } from '@/composables/useRouteHelpers'
-import { useEpisodesFilter } from '@/composables/useEpisodesFilter'
+import { useEpisodesFilter } from '@/composables/filters/useEpisodesFilter'
 import { useCountString } from '@/composables/useCountString'
 
-import EpisodesFilters from '@/components/EpisodesFilters.vue'
+import EpisodesFilters from '@/components/filters/EpisodesFilters.vue'
 import CardEpisode from '@/components/cards/CardEpisode.vue'
 
 const { realPage, pageClick } = useRouteHelpers()

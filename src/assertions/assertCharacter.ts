@@ -4,7 +4,7 @@ import { errLog } from '@/assertions/errLog'
 import { status, gender } from '@/assets/constants'
 import type { TGender, TStatus } from '@/types/types'
 
-/** Проверка данных API Персонаж */
+/** Проверка данных от сервера Персонаж */
 function assertCharacter(obj: unknown): asserts obj is ICharacter {
   if (typeof obj === 'object' && !!obj) {
     if (
