@@ -1,0 +1,8 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [{ "key": "cache-control", "value": "private, max-age=2592000" }]
+    }
+  ]
+}
