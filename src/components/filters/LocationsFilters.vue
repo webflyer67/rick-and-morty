@@ -6,6 +6,7 @@ const { modalValue, changeModalValue, clearModalValue } = useLocationsFilter()
 <template>
   <v-col>
     <v-text-field
+      color="primary"
       label="Name"
       hide-details="auto"
       :model-value="modalValue.name"
@@ -15,6 +16,7 @@ const { modalValue, changeModalValue, clearModalValue } = useLocationsFilter()
   </v-col>
   <v-col>
     <v-text-field
+      color="primary"
       label="Dimension"
       hide-details="auto"
       :model-value="modalValue.dimension"
@@ -24,6 +26,7 @@ const { modalValue, changeModalValue, clearModalValue } = useLocationsFilter()
   </v-col>
   <v-col>
     <v-text-field
+      color="primary"
       label="Type"
       hide-details="auto"
       :model-value="modalValue.type"

@@ -13,7 +13,6 @@ export function useCountString(info: ComputedRef<IInfo>) {
     if (info.value.count != null && info.value.count < realPage.value * 20) {
       to = info.value.count
     }
-
     return `${from} - ${to} of ${info.value.count}`
   })
   return {

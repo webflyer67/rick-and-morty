@@ -6,6 +6,7 @@ const { modalValue, changeModalValue, clearModalValue } = useEpisodesFilter()
 <template>
   <v-col>
     <v-text-field
+      color="primary"
       label="Name"
       hide-details="auto"
       :model-value="modalValue.name"
@@ -15,6 +16,7 @@ const { modalValue, changeModalValue, clearModalValue } = useEpisodesFilter()
   </v-col>
   <v-col>
     <v-text-field
+      color="primary"
       label="Episode"
       hide-details="auto"
       :model-value="modalValue.episode"

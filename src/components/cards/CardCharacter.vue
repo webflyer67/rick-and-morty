@@ -21,13 +21,12 @@ defineProps({
 <template>
   <v-card class="mx-auto elevation-10" max-width="100%">
     <v-img class="align-end text-white" :src="item?.image" cover>
-      <v-card-title> #{{ item.id }}: {{ item.name }}</v-card-title>
+      <v-card-title class="text-h5 text-primary"> #{{ item.id }}: {{ item.name }}</v-card-title>
     </v-img>
-
-    <v-card-subtitle class="pt-4"> Species: {{ item.species }} </v-card-subtitle>
-    <v-card-subtitle class="pt-4"> Type: {{ item.type ? item.type : '-' }} </v-card-subtitle>
-    <v-card-subtitle class="pt-4"> Gender: {{ item.gender }} </v-card-subtitle>
-    <v-card-subtitle class="pt-4"> Status: {{ item.status }} </v-card-subtitle>
+    <v-card-subtitle class="pt-2"> Species: {{ item.species }} </v-card-subtitle>
+    <v-card-subtitle class="pt-2"> Type: {{ item.type ? item.type : '-' }} </v-card-subtitle>
+    <v-card-subtitle class="pt-2"> Gender: {{ item.gender }} </v-card-subtitle>
+    <v-card-subtitle class="pt-2"> Status: {{ item.status }} </v-card-subtitle>
     <v-card-actions class="justify-end">
       <v-btn v-if="showMore" @click="moreClick(item.id, 'character')" color="primary">
         More...

@@ -21,15 +21,15 @@ item.value?.episodes
       <v-col
         class="d-flex flex-column justify-space-around v-col-sm-12 v-col-md-6 v-col-lg-4 v-col-xl-3"
       >
-        <div class="text-h2">First seen in:</div>
+        <div class="text-h4 text-primary">First seen in:</div>
         <div><card-location :item="item.origin" /></div>
-        <div class="text-h2">Last known location:</div>
+        <div class="text-h4 text-primary">Last known location:</div>
         <div><card-location :item="item.location" /></div>
       </v-col>
     </v-row>
 
     <v-row class="d-flex justify-center">
-      <div class="text-h2">Seen in episodes:</div>
+      <div class="text-h4 text-primary">Seen in episodes:</div>
     </v-row>
     <v-row v-if="item.episodes" class="justify-center">
       <v-col

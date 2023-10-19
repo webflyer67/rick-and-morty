@@ -18,7 +18,7 @@ const { item, loading } = useEpisode(id)
     </v-row>
 
     <v-row class="d-flex justify-center">
-      <div class="text-h2">Characters in episode:</div>
+      <div class="text-h4 text-primary">Characters in episode:</div>
     </v-row>
     <v-row v-if="item.characters" class="justify-center">
       <v-col

@@ -14,7 +14,8 @@ const { menu, currentMenuItem } = useMenu()
         </v-tab>
       </v-tabs>
     </v-app-bar>
-    <v-main class="d-flex align-center justify-center" style="min-height: 300px">
+
+    <v-main class="d-flex align-center justify-center pb-5" style="min-height: 300px">
       <router-view />
     </v-main>
   </v-layout>

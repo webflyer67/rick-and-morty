@@ -18,19 +18,16 @@ const { countString } = useCountString(info)
     <v-row>
       <locations-filters />
     </v-row>
-    <v-row v-if="info.pages != null && info.pages > 0">
-      <v-col>
-        <v-pagination
-          @update:modelValue="pageClick($event, 'locations')"
-          color="primary"
-          :modelValue="realPage"
-          :length="info.pages"
-          :total-visible="8"
-        />
-      </v-col>
-      <v-col class="d-flex align-center">
-        <div>{{ countString }}</div>
-      </v-col>
+
+    <v-row class="justify-center align-center" v-if="info.pages != null && info.pages > 0">
+      <v-pagination
+        @update:modelValue="pageClick($event, 'locations')"
+        color="primary"
+        :modelValue="realPage"
+        :length="info.pages"
+        :total-visible="8"
+      />
+      <div class="text-h5 text-primary flex-nowrap">{{ countString }}</div>
     </v-row>
 
     <v-row v-if="!loading && items" class="justify-center">
@@ -41,6 +38,17 @@ const { countString } = useCountString(info)
       >
         <card-location :item="item" showMore />
       </v-col>
+    </v-row>
+
+    <v-row class="justify-center align-center" v-if="info.pages != null && info.pages > 0">
+      <v-pagination
+        @update:modelValue="pageClick($event, 'locations')"
+        color="primary"
+        :modelValue="realPage"
+        :length="info.pages"
+        :total-visible="8"
+      />
+      <div class="text-h5 text-primary flex-nowrap">{{ countString }}</div>
     </v-row>
   </v-container>
 </template>

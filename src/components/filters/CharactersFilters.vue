@@ -7,6 +7,7 @@ const { itemsStatus, itemsGender, modalValue, changeModalValue, clearModalValue 
 <template>
   <v-col>
     <v-text-field
+      color="primary"
       label="Name"
       hide-details="auto"
       :model-value="modalValue.name"
@@ -16,6 +17,7 @@ const { itemsStatus, itemsGender, modalValue, changeModalValue, clearModalValue 
   </v-col>
   <v-col>
     <v-text-field
+      color="primary"
       label="Species"
       hide-details="auto"
       :model-value="modalValue.species"
@@ -25,6 +27,7 @@ const { itemsStatus, itemsGender, modalValue, changeModalValue, clearModalValue 
   </v-col>
   <v-col>
     <v-text-field
+      color="primary"
       label="Type"
       hide-details="auto"
       :model-value="modalValue.type"
@@ -34,6 +37,7 @@ const { itemsStatus, itemsGender, modalValue, changeModalValue, clearModalValue 
   </v-col>
   <v-col>
     <v-select
+      color="primary"
       :model-value="modalValue.status"
       @update:model-value="changeModalValue($event, 'status')"
       :items="itemsStatus"
@@ -43,6 +47,7 @@ const { itemsStatus, itemsGender, modalValue, changeModalValue, clearModalValue 
   </v-col>
   <v-col>
     <v-select
+      color="primary"
       :model-value="modalValue.gender"
       @update:model-value="changeModalValue($event, 'gender')"
       :items="itemsGender"

@@ -17,7 +17,7 @@ const { item, loading } = useLocation(id)
       </v-col>
     </v-row>
     <v-row class="d-flex justify-center">
-      <div class="text-h2">Characters in location:</div>
+      <div class="text-h4 text-primary">Characters in location:</div>
     </v-row>
     <v-row v-if="item.residents" class="justify-center">
       <v-col

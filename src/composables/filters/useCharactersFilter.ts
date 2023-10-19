@@ -47,7 +47,7 @@ export function useCharactersFilter() {
     }
     router.push({ name: 'charactersFirst', query })
   }
-  const changeModalValue = _.debounce(changeModalValueRun, 700, { maxWait: 2000 })
+  const changeModalValue = _.debounce(changeModalValueRun, 600, { maxWait: 2000 })
 
   /**
    * Очистка состояния фильтров страницы персонажей, происходит через роутер
