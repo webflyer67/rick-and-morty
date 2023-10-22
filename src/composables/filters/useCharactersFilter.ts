@@ -2,7 +2,7 @@ import type { Ref, ComputedRef } from 'vue'
 import type { TStatusFilter, TGenderFilter, TFilterFields } from '@/types/types'
 import type { IRouteQueryFilters } from '@/types/TRouteQueryFilters'
 
-import _ from 'lodash'
+import debounce from 'lodash/debounce'
 import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { assertCharacterFilter } from '@/assertions/assertCharacterFilter'
@@ -47,7 +47,7 @@ export function useCharactersFilter() {
     }
     router.push({ name: 'charactersFirst', query })
   }
-  const changeModalValue = _.debounce(changeModalValueRun, 600, { maxWait: 2000 })
+  const changeModalValue = debounce(changeModalValueRun, 600, { maxWait: 2000 })
 
   /**
    * Очистка состояния фильтров страницы персонажей, происходит через роутер
